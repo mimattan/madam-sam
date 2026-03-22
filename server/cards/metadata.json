@@ -1,0 +1,74 @@
+[
+  {
+    "id": "spring-nursery",
+    "name": "Lente Kinderkamer",
+    "description": "Cozy nursery scene with plants and a crib",
+    "image": "placeholder-spring-nursery.jpg",
+    "tags": ["illustrative", "plants", "nursery", "cozy"],
+    "babyName": "Ninte",
+    "colors": ["sage green", "warm brown", "cream"]
+  },
+  {
+    "id": "forest-adventure",
+    "name": "Bos Avontuur",
+    "description": "Autumn forest scene with woodland animals",
+    "image": "placeholder-forest-adventure.jpg",
+    "tags": ["illustrative", "nature", "forest", "animals"],
+    "babyName": "Lune Aloïs",
+    "colors": ["autumn orange", "forest green", "golden brown"]
+  },
+  {
+    "id": "ocean-world",
+    "name": "Oceaan Wereld",
+    "description": "Playful ocean scene with colorful sea creatures",
+    "image": "placeholder-ocean-world.jpg",
+    "tags": ["illustrative", "ocean", "animals", "playful"],
+    "babyName": "Aude",
+    "colors": ["ocean blue", "coral", "white"]
+  },
+  {
+    "id": "meadow-friends",
+    "name": "Weide Vriendjes",
+    "description": "Gentle meadow scene with flowers and small animals",
+    "image": "placeholder-meadow-friends.jpg",
+    "tags": ["illustrative", "flowers", "animals", "gentle"],
+    "babyName": "Nikola",
+    "colors": ["warm gold", "sage green", "soft pink"]
+  },
+  {
+    "id": "little-lion",
+    "name": "Kleine Leeuw",
+    "description": "Cute lion illustration with warm earth tones",
+    "image": "placeholder-little-lion.jpg",
+    "tags": ["cute", "animals", "minimalist"],
+    "babyName": "Léon",
+    "colors": ["warm beige", "soft brown", "cream"]
+  },
+  {
+    "id": "mountain-sunset",
+    "name": "Bergen Zonsondergang",
+    "description": "Serene mountain landscape with sunset colors",
+    "image": "placeholder-mountain-sunset.jpg",
+    "tags": ["landscape", "mountains", "serene"],
+    "babyName": "Hazel",
+    "colors": ["dusty pink", "teal", "soft coral"]
+  },
+  {
+    "id": "garden-party",
+    "name": "Tuin Feest",
+    "description": "Vibrant garden scene with flowers and butterflies",
+    "image": "placeholder-garden-party.jpg",
+    "tags": ["illustrative", "flowers", "colorful", "garden"],
+    "babyName": "Ada",
+    "colors": ["lavender", "green", "warm pink"]
+  },
+  {
+    "id": "space-explorer",
+    "name": "Ruimte Ontdekker",
+    "description": "Whimsical space theme with planets and stars",
+    "image": "placeholder-space-explorer.jpg",
+    "tags": ["space", "whimsical", "modern"],
+    "babyName": "Julie",
+    "colors": ["deep purple", "dusty pink", "gold"]
+  }
+]

@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+*.local
+server/cards/*.jpg
+server/cards/*.png
+!server/cards/placeholder-*.jpg
+server/edited/
