@@ -12,8 +12,13 @@ interface CardTemplate {
   description: string
   image: string
   tags: string[]
-  babyName: string
   colors: string[]
+  allowedOperations: string[]
+  suggestions: Array<{
+    type: string
+    label: string
+    prompt: string
+  }>
 }
 
 function loadCards(): CardTemplate[] {
@@ -30,8 +35,9 @@ router.get('/', (_req, res) => {
     name: card.name,
     description: card.description,
     tags: card.tags,
-    babyName: card.babyName,
     colors: card.colors,
+    allowedOperations: card.allowedOperations,
+    suggestions: card.suggestions,
     thumbnailUrl: `/api/images/cards/${card.image}`,
   }))
   res.json(cardList)

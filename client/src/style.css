@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -16,8 +17,6 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
-
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -30,4 +29,8 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-heading);
   font-weight: 500;
+}
+
+.max-h-full {
+  overflow: hidden;
 }

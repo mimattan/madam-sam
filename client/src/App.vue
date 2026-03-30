@@ -4,7 +4,7 @@ import AppHeader from './components/AppHeader.vue'
 
 <template>
   <div class="min-h-screen bg-sam-cream">
-    <AppHeader />
+    <!--<AppHeader />-->
     <main>
       <router-view />
     </main>

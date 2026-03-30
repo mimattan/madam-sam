@@ -5,20 +5,16 @@ const emit = defineEmits<{
   submit: [prompt: string]
 }>()
 
-defineProps<{
+const props = defineProps<{
   disabled?: boolean
+  suggestions?: Array<{
+    type: string
+    label: string
+    prompt: string
+  }>
 }>()
 
 const prompt = ref('')
-
-const suggestions = [
-  'Verander de naam naar ...',
-  'Maak de achtergrond lichtroze',
-  'Voeg een kleine eenhoorn toe',
-  'Verander de kleuren naar herfsttinten',
-  'Voeg sterretjes toe aan de achtergrond',
-  'Maak het kleurenpalet zachter',
-]
 
 function submit() {
   const text = prompt.value.trim()
@@ -27,39 +23,39 @@ function submit() {
   prompt.value = ''
 }
 
-function useSuggestion(suggestion: string) {
-  prompt.value = suggestion
+function useSuggestion(suggestionPrompt: string) {
+  prompt.value = suggestionPrompt
 }
 </script>
 
 <template>
-  <div class="bg-white rounded-xl shadow-sm border border-sam-taupe-light p-4">
+  <div>
     <!-- Suggestions -->
-    <div class="flex flex-wrap gap-2 mb-3">
+    <div v-if="suggestions && suggestions.length > 0" class="flex flex-wrap gap-1.5 mb-2.5">
       <button
         v-for="s in suggestions"
-        :key="s"
+        :key="s.label"
         :disabled="disabled"
-        @click="useSuggestion(s)"
-        class="text-xs px-3 py-1.5 rounded-full border border-sam-taupe-light text-sam-text-light hover:bg-sam-taupe-light hover:text-sam-text transition-colors disabled:opacity-50"
+        @click="useSuggestion(s.prompt)"
+        class="text-xs px-2.5 py-1 rounded-full border border-sam-taupe-light text-sam-text-light hover:bg-sam-taupe-light hover:text-sam-text transition-colors disabled:opacity-50"
       >
-        {{ s }}
+        {{ s.label }}
       </button>
     </div>
 
     <!-- Input area -->
-    <form @submit.prevent="submit" class="flex gap-3">
+    <form @submit.prevent="submit" class="space-y-2">
       <input
         v-model="prompt"
         :disabled="disabled"
         type="text"
-        placeholder="Beschrijf de aanpassing die je wilt maken..."
-        class="flex-1 px-4 py-3 rounded-lg border border-sam-taupe-light focus:border-sam-green focus:ring-1 focus:ring-sam-green outline-none text-sam-text placeholder:text-sam-warm-gray disabled:opacity-50 disabled:bg-gray-50"
+        placeholder="Beschrijf de aanpassing..."
+        class="w-full px-3 py-2 text-sm rounded-lg border border-sam-taupe-light focus:border-sam-green focus:ring-1 focus:ring-sam-green outline-none text-sam-text placeholder:text-sam-warm-gray disabled:opacity-50 disabled:bg-gray-50"
       />
       <button
         type="submit"
         :disabled="disabled || !prompt.trim()"
-        class="px-6 py-3 bg-sam-green text-white rounded-lg hover:bg-sam-green-dark transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+        class="w-full py-2 bg-sam-green text-white text-sm rounded-lg hover:bg-sam-green-dark transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
       >
         <span v-if="disabled" class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
         <span v-else>Aanpassen</span>

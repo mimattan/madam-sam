@@ -15,9 +15,7 @@ function formatTime(ts: number): string {
 </script>
 
 <template>
-  <div v-if="history.length > 0" class="bg-white rounded-xl shadow-sm border border-sam-taupe-light p-4">
-    <h3 class="font-heading text-lg text-sam-text mb-3">Bewerkingen</h3>
-    <div class="space-y-2">
+  <div v-if="history.length > 0" class="space-y-1.5">
       <div
         v-for="(entry, index) in history"
         :key="index"
@@ -38,6 +36,5 @@ function formatTime(ts: number): string {
           Herstel
         </button>
       </div>
-    </div>
   </div>
 </template>

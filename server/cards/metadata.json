@@ -1,74 +1,470 @@
 [
   {
-    "id": "spring-nursery",
-    "name": "Lente Kinderkamer",
-    "description": "Cozy nursery scene with plants and a crib",
-    "image": "placeholder-spring-nursery.jpg",
-    "tags": ["illustrative", "plants", "nursery", "cozy"],
-    "babyName": "Ninte",
-    "colors": ["sage green", "warm brown", "cream"]
+    "id": "baziel",
+    "name": "Baziel",
+    "description": "Speels landschap met glooiende heuvels, bomen en bloemen",
+    "image": "baziel.jpg",
+    "tags": ["illustratief", "landschap", "natuur", "gezellig"],
+    "colors": ["saliegroen", "warm bruin", "crème", "goudgeel"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de boomkleuren",
+        "prompt": "Verander de bomen naar herfstkleuren met oranje en rood"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak het kleurenpalet zachter en pastelachtig",
+        "prompt": "Verander het kleurenpalet naar zachte pasteltinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak de sfeer warmer",
+        "prompt": "Verander de sfeer naar warme zonsondergang tinten"
+      }
+    ]
   },
   {
-    "id": "forest-adventure",
-    "name": "Bos Avontuur",
-    "description": "Autumn forest scene with woodland animals",
-    "image": "placeholder-forest-adventure.jpg",
-    "tags": ["illustrative", "nature", "forest", "animals"],
-    "babyName": "Lune Aloïs",
-    "colors": ["autumn orange", "forest green", "golden brown"]
+    "id": "dre",
+    "name": "Dre",
+    "description": "Minimalistisch landschap met gelaagde heuvels en gouden zon",
+    "image": "dre.jpg",
+    "tags": ["minimalistisch", "landschap", "natuur", "sereen"],
+    "colors": ["goudgeel", "saliegroen", "crème"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Maak de achtergrond lichtroze",
+        "prompt": "Verander de achtergrondkleur naar zacht roze"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Verander naar herfsttinten",
+        "prompt": "Verander het kleurenpalet naar warme herfsttinten met oranje en dieprood"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak de kleuren warmer",
+        "prompt": "Verander de sfeer naar warme avondtinten"
+      }
+    ]
   },
   {
-    "id": "ocean-world",
-    "name": "Oceaan Wereld",
-    "description": "Playful ocean scene with colorful sea creatures",
-    "image": "placeholder-ocean-world.jpg",
-    "tags": ["illustrative", "ocean", "animals", "playful"],
-    "babyName": "Aude",
-    "colors": ["ocean blue", "coral", "white"]
+    "id": "emiel",
+    "name": "Emiel",
+    "description": "Bosscène met teckels en picknickmand",
+    "image": "emiel.jpg",
+    "tags": ["illustratief", "dieren", "natuur", "avontuur"],
+    "colors": ["turquoise", "oranje", "groen", "crème"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de picknickmand naar rood",
+        "prompt": "Verander de picknickmand naar felrood"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsondergang",
+        "prompt": "Verander de belichting naar warme zonsondergangkleuren"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg mist toe aan het bos",
+        "prompt": "Voeg zachte ochtendmist toe aan de bosscène"
+      }
+    ]
   },
   {
-    "id": "meadow-friends",
-    "name": "Weide Vriendjes",
-    "description": "Gentle meadow scene with flowers and small animals",
-    "image": "placeholder-meadow-friends.jpg",
-    "tags": ["illustrative", "flowers", "animals", "gentle"],
-    "babyName": "Nikola",
-    "colors": ["warm gold", "sage green", "soft pink"]
+    "id": "felix",
+    "name": "Felix",
+    "description": "Berglandschap met zeilboot en familie op het water",
+    "image": "felix.jpg",
+    "tags": ["illustratief", "landschap", "avontuur", "familie"],
+    "colors": ["blauw", "paars", "goudgeel", "groen"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander het zeil naar dieprood",
+        "prompt": "Verander het zeil van de boot naar dieprood"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsopgang",
+        "prompt": "Verander de belichting naar zachte zonsopgangkleuren met roze en oranje"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Verander naar herfstkleuren",
+        "prompt": "Verander het kleurenpalet naar warme herfsttinten"
+      }
+    ]
   },
   {
-    "id": "little-lion",
-    "name": "Kleine Leeuw",
-    "description": "Cute lion illustration with warm earth tones",
-    "image": "placeholder-little-lion.jpg",
-    "tags": ["cute", "animals", "minimalist"],
-    "babyName": "Léon",
-    "colors": ["warm beige", "soft brown", "cream"]
+    "id": "hazel",
+    "name": "Hazel",
+    "description": "Sereen landschap met gelaagde bergen en roze zon",
+    "image": "hazel.jpg",
+    "tags": ["minimalistisch", "landschap", "vredig", "natuur"],
+    "colors": ["roze", "blauw", "groen", "crème"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de zon naar goudgeel",
+        "prompt": "Verander de zon naar warme goudgele kleur"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak de kleuren koeler",
+        "prompt": "Verander het kleurenpalet naar koele blauwe en paarse tinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een avondsfeer",
+        "prompt": "Verander de belichting naar zachte avondtinten"
+      }
+    ]
   },
   {
-    "id": "mountain-sunset",
-    "name": "Bergen Zonsondergang",
-    "description": "Serene mountain landscape with sunset colors",
-    "image": "placeholder-mountain-sunset.jpg",
-    "tags": ["landscape", "mountains", "serene"],
-    "babyName": "Hazel",
-    "colors": ["dusty pink", "teal", "soft coral"]
+    "id": "isaac",
+    "name": "Isaac",
+    "description": "Arctische scène met ijsbeer, bergen en onderwaterleven",
+    "image": "isaac.jpg",
+    "tags": ["illustratief", "dieren", "arctisch", "natuur"],
+    "colors": ["wit", "blauw", "groen", "roze"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "atmosphere",
+        "label": "Maak het noorderlicht zichtbaar",
+        "prompt": "Voeg noorderlicht toe met groene en paarse tinten in de lucht"
+      },
+      {
+        "type": "color_change",
+        "label": "Verander het water naar diepblauw",
+        "prompt": "Verander het water naar diep oceaanblauw"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg sneeuw toe",
+        "prompt": "Voeg zachte sneeuwval toe aan de arctische scène"
+      }
+    ]
   },
   {
-    "id": "garden-party",
-    "name": "Tuin Feest",
-    "description": "Vibrant garden scene with flowers and butterflies",
-    "image": "placeholder-garden-party.jpg",
-    "tags": ["illustrative", "flowers", "colorful", "garden"],
-    "babyName": "Ada",
-    "colors": ["lavender", "green", "warm pink"]
+    "id": "isaiah",
+    "name": "Isaiah",
+    "description": "Kleurrijk gelaagd berglandschap met vikingschip op water",
+    "image": "isaiah.jpg",
+    "tags": ["illustratief", "landschap", "avontuur", "kleurrijk"],
+    "colors": ["oranje", "rood", "blauw", "groen", "paars"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander het schip naar donkerbruin",
+        "prompt": "Verander het vikingschip naar donkerbruine houttinten"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak de kleuren zachter",
+        "prompt": "Verander het kleurenpalet naar zachte pasteltinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsondergang",
+        "prompt": "Verander de belichting naar warme zonsondergangkleuren"
+      }
+    ]
   },
   {
-    "id": "space-explorer",
-    "name": "Ruimte Ontdekker",
-    "description": "Whimsical space theme with planets and stars",
-    "image": "placeholder-space-explorer.jpg",
-    "tags": ["space", "whimsical", "modern"],
-    "babyName": "Julie",
-    "colors": ["deep purple", "dusty pink", "gold"]
+    "id": "leia",
+    "name": "Leia",
+    "description": "Vredig zeegezicht met zeilboot en vliegende vogels",
+    "image": "leia.jpg",
+    "tags": ["minimalistisch", "zeegezicht", "vredig", "natuur"],
+    "colors": ["blauw", "crème", "bruin"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsondergang",
+        "prompt": "Verander de belichting naar warme zonsondergangkleuren met oranje en roze"
+      },
+      {
+        "type": "color_change",
+        "label": "Verander de boot naar rood",
+        "prompt": "Verander de zeilboot naar felrood"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak de kleuren warmer",
+        "prompt": "Verander het kleurenpalet naar warme tinten"
+      }
+    ]
+  },
+  {
+    "id": "mara",
+    "name": "Mara",
+    "description": "Berglandschap met familie op vissersboot",
+    "image": "mara.jpg",
+    "tags": ["illustratief", "landschap", "familie", "avontuur"],
+    "colors": ["blauw", "rood", "groen", "goudgeel"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de boot naar groen",
+        "prompt": "Verander de vissersboot naar mosgroen"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een avondscène",
+        "prompt": "Verander de belichting naar zachte avondtinten"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg wolken toe",
+        "prompt": "Voeg zachte wolken toe aan de lucht"
+      }
+    ]
+  },
+  {
+    "id": "menno",
+    "name": "Menno",
+    "description": "Nachtelijke kampeerscène met tent, maan en sterren",
+    "image": "menno.jpg",
+    "tags": ["illustratief", "nacht", "kamperen", "avontuur"],
+    "colors": ["paars", "turquoise", "groen", "goudgeel"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de tent naar rood",
+        "prompt": "Verander de tent naar felrood"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak de nacht donkerder",
+        "prompt": "Verander de nachtelijke sfeer naar diepere, donkerdere tinten"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Voeg noorderlicht kleuren toe",
+        "prompt": "Verander het kleurenpalet naar noorderlicht tinten met groen en paars"
+      }
+    ]
+  },
+  {
+    "id": "nand",
+    "name": "Nand",
+    "description": "Gelaagd landschap met herten op heuvel en gouden zon",
+    "image": "nand.jpg",
+    "tags": ["illustratief", "landschap", "dieren", "natuur"],
+    "colors": ["oranje", "bruin", "groen", "turquoise"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "palette_shift",
+        "label": "Verander naar winterkleuren",
+        "prompt": "Verander het kleurenpalet naar koude wintertinten met blauw en wit"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsopgang",
+        "prompt": "Verander de belichting naar zachte zonsopgangkleuren"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg mist toe",
+        "prompt": "Voeg zachte ochtendmist toe aan het landschap"
+      }
+    ]
+  },
+  {
+    "id": "nena",
+    "name": "Nena",
+    "description": "Familieportret met maan, sterren en bloemen",
+    "image": "nena.jpg",
+    "tags": ["illustratief", "familie", "speels", "natuur"],
+    "colors": ["roze", "crème", "bruin"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de bloemen naar blauw",
+        "prompt": "Verander de bloemen naar helderblauw"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak de kleuren warmer",
+        "prompt": "Verander het kleurenpalet naar warme oranje en gele tinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een avondsfeer",
+        "prompt": "Verander de belichting naar zachte avondtinten"
+      }
+    ]
+  },
+  {
+    "id": "noor",
+    "name": "Noor",
+    "description": "Familie wandelscène met bergen en bos",
+    "image": "noor.jpg",
+    "tags": ["illustratief", "familie", "wandelen", "natuur"],
+    "colors": ["roze", "groen", "blauw", "oranje"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "palette_shift",
+        "label": "Verander naar herfstkleuren",
+        "prompt": "Verander het kleurenpalet naar warme herfsttinten met oranje en rood"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsondergang",
+        "prompt": "Verander de belichting naar warme zonsondergangkleuren"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg wolken toe",
+        "prompt": "Voeg zachte wolken toe aan de lucht"
+      }
+    ]
+  },
+  {
+    "id": "nore",
+    "name": "Nore",
+    "description": "Herfstlandschap met bomen en gouden zon",
+    "image": "nore.jpg",
+    "tags": ["illustratief", "landschap", "herfst", "natuur"],
+    "colors": ["oranje", "geel", "groen", "turquoise", "bruin"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "palette_shift",
+        "label": "Verander naar lentekleuren",
+        "prompt": "Verander het kleurenpalet naar frisse lentetinten met groen en roze"
+      },
+      {
+        "type": "color_change",
+        "label": "Verander de zon naar roze",
+        "prompt": "Verander de zon naar zachte roze kleur"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak de kleuren zachter",
+        "prompt": "Verander de sfeer naar zachte pasteltinten"
+      }
+    ]
+  },
+  {
+    "id": "rosie",
+    "name": "Rosie",
+    "description": "Kindersilhouetten in landschap met luchtballon",
+    "image": "rosie.jpg",
+    "tags": ["illustratief", "familie", "speels", "avontuur"],
+    "colors": ["oranje", "rood", "crème", "bruin"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de luchtballon naar blauw",
+        "prompt": "Verander de luchtballon naar helderblauw"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Maak de kleuren koeler",
+        "prompt": "Verander het kleurenpalet naar koele blauwe en paarse tinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsopgang",
+        "prompt": "Verander de belichting naar zachte zonsopgangkleuren"
+      }
+    ]
+  },
+  {
+    "id": "siebe",
+    "name": "Siebe",
+    "description": "Luchtballon zweeft boven glooiende heuvels",
+    "image": "siebe.jpg",
+    "tags": ["illustratief", "avontuur", "speels", "natuur"],
+    "colors": ["oranje", "rood", "groen", "crème"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "color_change",
+        "label": "Verander de ballon naar paars",
+        "prompt": "Verander de luchtballon naar dieppaars"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak het een zonsondergang",
+        "prompt": "Verander de belichting naar warme zonsondergangkleuren"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg wolken toe",
+        "prompt": "Voeg zachte wolken toe aan de lucht"
+      }
+    ]
+  },
+  {
+    "id": "tille",
+    "name": "Tille",
+    "description": "Kleurrijk landschap met bomen, heuvels en bloemen",
+    "image": "tille.jpg",
+    "tags": ["illustratief", "landschap", "kleurrijk", "natuur"],
+    "colors": ["geel", "groen", "blauw", "rood", "paars"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "suggestions": [
+      {
+        "type": "palette_shift",
+        "label": "Maak het kleurenpalet zachter en pastelachtig",
+        "prompt": "Verander het kleurenpalet naar zachte pasteltinten"
+      },
+      {
+        "type": "color_change",
+        "label": "Verander de bloemen naar roze",
+        "prompt": "Verander de bloemen naar zachte roze tinten"
+      },
+      {
+        "type": "atmosphere",
+        "label": "Maak de kleuren warmer",
+        "prompt": "Verander de sfeer naar warme tinten"
+      }
+    ]
+  },
+  {
+    "id": "wannes",
+    "name": "Wannes",
+    "description": "Berglandschap met bos en meer bij zonsopgang",
+    "image": "wannes.jpg",
+    "tags": ["minimalistisch", "landschap", "natuur", "sereen"],
+    "colors": ["groen", "turquoise", "goudgeel", "crème"],
+    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "suggestions": [
+      {
+        "type": "atmosphere",
+        "label": "Verander naar avondsfeer",
+        "prompt": "Verander de belichting naar zachte avondtinten met paars en blauw"
+      },
+      {
+        "type": "palette_shift",
+        "label": "Verander naar herfstkleuren",
+        "prompt": "Verander het kleurenpalet naar warme herfsttinten"
+      },
+      {
+        "type": "weather",
+        "label": "Voeg mist toe aan het meer",
+        "prompt": "Voeg zachte ochtendmist toe boven het meer"
+      }
+    ]
   }
 ]

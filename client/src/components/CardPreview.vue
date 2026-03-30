@@ -38,8 +38,7 @@ const bgColor = bgColors[props.card.id] || 'bg-gray-100'
         v-if="!card.thumbnailUrl"
         class="w-full h-full flex flex-col items-center justify-center text-white/80"
       >
-        <span class="font-heading text-2xl italic">{{ card.babyName }}</span>
-        <span class="text-sm mt-2">{{ card.name }}</span>
+        <span class="font-heading text-2xl italic">{{ card.name }}</span>
       </div>
     </div>
     <div class="bg-white p-4">
