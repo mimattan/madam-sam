@@ -90,9 +90,9 @@ onMounted(() => {
             <div class="w-12 h-12 rounded-full bg-sam-green/10 flex items-center justify-center mx-auto mb-4">
               <span class="text-sam-green text-xl font-heading font-semibold">3</span>
             </div>
-            <h3 class="font-heading text-lg mb-2 text-sam-text">Download</h3>
+            <h3 class="font-heading text-lg mb-2 text-sam-text">Bestel of Download</h3>
             <p class="text-sam-text-light text-sm">
-              Tevreden met het resultaat? Download je gepersonaliseerde kaartje!
+              Tevreden? Bestel je kaartjes gedrukt op ecologisch papier, of download het ontwerp.
             </p>
           </div>
         </div>

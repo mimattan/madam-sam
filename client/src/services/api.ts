@@ -14,6 +14,7 @@ export interface CardTemplate {
   }>
   thumbnailUrl: string
   imageUrl?: string
+  shopifyHandle?: string
 }
 
 export interface EditResponse {
@@ -148,6 +149,20 @@ export async function downloadCardWithText(
     console.error('Error downloading image with text:', error)
     throw error
   }
+}
+
+export async function saveOrderImage(blob: Blob, cardId: string): Promise<{ imageUrl: string }> {
+  const formData = new FormData()
+  formData.append('image', blob, `${cardId}-order.png`)
+  formData.append('cardId', cardId)
+
+  const response = await fetch(`${API_BASE}/order-image`, {
+    method: 'POST',
+    body: formData,
+  })
+
+  if (!response.ok) throw new Error('Failed to save order image')
+  return response.json()
 }
 
 export async function getAvailableFonts(): Promise<FontOption[]> {

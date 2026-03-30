@@ -4,9 +4,23 @@
     "name": "Baziel",
     "description": "Speels landschap met glooiende heuvels, bomen en bloemen",
     "image": "baziel.jpg",
-    "tags": ["illustratief", "landschap", "natuur", "gezellig"],
-    "colors": ["saliegroen", "warm bruin", "crème", "goudgeel"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "natuur",
+      "gezellig"
+    ],
+    "colors": [
+      "saliegroen",
+      "warm bruin",
+      "crème",
+      "goudgeel"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -23,16 +37,30 @@
         "label": "Maak de sfeer warmer",
         "prompt": "Verander de sfeer naar warme zonsondergang tinten"
       }
-    ]
+    ],
+    "shopifyHandle": "baziel-geboortekaartje"
   },
   {
     "id": "dre",
     "name": "Dre",
     "description": "Minimalistisch landschap met gelaagde heuvels en gouden zon",
     "image": "dre.jpg",
-    "tags": ["minimalistisch", "landschap", "natuur", "sereen"],
-    "colors": ["goudgeel", "saliegroen", "crème"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "minimalistisch",
+      "landschap",
+      "natuur",
+      "sereen"
+    ],
+    "colors": [
+      "goudgeel",
+      "saliegroen",
+      "crème"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -49,16 +77,32 @@
         "label": "Maak de kleuren warmer",
         "prompt": "Verander de sfeer naar warme avondtinten"
       }
-    ]
+    ],
+    "shopifyHandle": "dre-geboortekaartje"
   },
   {
     "id": "emiel",
     "name": "Emiel",
     "description": "Bosscène met teckels en picknickmand",
     "image": "emiel.jpg",
-    "tags": ["illustratief", "dieren", "natuur", "avontuur"],
-    "colors": ["turquoise", "oranje", "groen", "crème"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "dieren",
+      "natuur",
+      "avontuur"
+    ],
+    "colors": [
+      "turquoise",
+      "oranje",
+      "groen",
+      "crème"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -75,16 +119,32 @@
         "label": "Voeg mist toe aan het bos",
         "prompt": "Voeg zachte ochtendmist toe aan de bosscène"
       }
-    ]
+    ],
+    "shopifyHandle": "emiel-geboortekaartje"
   },
   {
     "id": "felix",
     "name": "Felix",
     "description": "Berglandschap met zeilboot en familie op het water",
     "image": "felix.jpg",
-    "tags": ["illustratief", "landschap", "avontuur", "familie"],
-    "colors": ["blauw", "paars", "goudgeel", "groen"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "avontuur",
+      "familie"
+    ],
+    "colors": [
+      "blauw",
+      "paars",
+      "goudgeel",
+      "groen"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -101,16 +161,31 @@
         "label": "Verander naar herfstkleuren",
         "prompt": "Verander het kleurenpalet naar warme herfsttinten"
       }
-    ]
+    ],
+    "shopifyHandle": "felix-geboortekaartje"
   },
   {
     "id": "hazel",
     "name": "Hazel",
     "description": "Sereen landschap met gelaagde bergen en roze zon",
     "image": "hazel.jpg",
-    "tags": ["minimalistisch", "landschap", "vredig", "natuur"],
-    "colors": ["roze", "blauw", "groen", "crème"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "minimalistisch",
+      "landschap",
+      "vredig",
+      "natuur"
+    ],
+    "colors": [
+      "roze",
+      "blauw",
+      "groen",
+      "crème"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -127,16 +202,32 @@
         "label": "Maak het een avondsfeer",
         "prompt": "Verander de belichting naar zachte avondtinten"
       }
-    ]
+    ],
+    "shopifyHandle": "hazel-geboortekaartje"
   },
   {
     "id": "isaac",
     "name": "Isaac",
     "description": "Arctische scène met ijsbeer, bergen en onderwaterleven",
     "image": "isaac.jpg",
-    "tags": ["illustratief", "dieren", "arctisch", "natuur"],
-    "colors": ["wit", "blauw", "groen", "roze"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "dieren",
+      "arctisch",
+      "natuur"
+    ],
+    "colors": [
+      "wit",
+      "blauw",
+      "groen",
+      "roze"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "atmosphere",
@@ -153,16 +244,32 @@
         "label": "Voeg sneeuw toe",
         "prompt": "Voeg zachte sneeuwval toe aan de arctische scène"
       }
-    ]
+    ],
+    "shopifyHandle": "isaac-geboortekaartje"
   },
   {
     "id": "isaiah",
     "name": "Isaiah",
     "description": "Kleurrijk gelaagd berglandschap met vikingschip op water",
     "image": "isaiah.jpg",
-    "tags": ["illustratief", "landschap", "avontuur", "kleurrijk"],
-    "colors": ["oranje", "rood", "blauw", "groen", "paars"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "avontuur",
+      "kleurrijk"
+    ],
+    "colors": [
+      "oranje",
+      "rood",
+      "blauw",
+      "groen",
+      "paars"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -179,16 +286,31 @@
         "label": "Maak het een zonsondergang",
         "prompt": "Verander de belichting naar warme zonsondergangkleuren"
       }
-    ]
+    ],
+    "shopifyHandle": "isaiah-geboortekaartje"
   },
   {
     "id": "leia",
     "name": "Leia",
     "description": "Vredig zeegezicht met zeilboot en vliegende vogels",
     "image": "leia.jpg",
-    "tags": ["minimalistisch", "zeegezicht", "vredig", "natuur"],
-    "colors": ["blauw", "crème", "bruin"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "minimalistisch",
+      "zeegezicht",
+      "vredig",
+      "natuur"
+    ],
+    "colors": [
+      "blauw",
+      "crème",
+      "bruin"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "atmosphere",
@@ -205,16 +327,32 @@
         "label": "Maak de kleuren warmer",
         "prompt": "Verander het kleurenpalet naar warme tinten"
       }
-    ]
+    ],
+    "shopifyHandle": "leia-geboortekaartje"
   },
   {
     "id": "mara",
     "name": "Mara",
     "description": "Berglandschap met familie op vissersboot",
     "image": "mara.jpg",
-    "tags": ["illustratief", "landschap", "familie", "avontuur"],
-    "colors": ["blauw", "rood", "groen", "goudgeel"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "familie",
+      "avontuur"
+    ],
+    "colors": [
+      "blauw",
+      "rood",
+      "groen",
+      "goudgeel"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -231,16 +369,31 @@
         "label": "Voeg wolken toe",
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
-    ]
+    ],
+    "shopifyHandle": "mara-geboortekaartje"
   },
   {
     "id": "menno",
     "name": "Menno",
     "description": "Nachtelijke kampeerscène met tent, maan en sterren",
     "image": "menno.jpg",
-    "tags": ["illustratief", "nacht", "kamperen", "avontuur"],
-    "colors": ["paars", "turquoise", "groen", "goudgeel"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "nacht",
+      "kamperen",
+      "avontuur"
+    ],
+    "colors": [
+      "paars",
+      "turquoise",
+      "groen",
+      "goudgeel"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -257,16 +410,32 @@
         "label": "Voeg noorderlicht kleuren toe",
         "prompt": "Verander het kleurenpalet naar noorderlicht tinten met groen en paars"
       }
-    ]
+    ],
+    "shopifyHandle": "menno-geboortekaartje"
   },
   {
     "id": "nand",
     "name": "Nand",
     "description": "Gelaagd landschap met herten op heuvel en gouden zon",
     "image": "nand.jpg",
-    "tags": ["illustratief", "landschap", "dieren", "natuur"],
-    "colors": ["oranje", "bruin", "groen", "turquoise"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "dieren",
+      "natuur"
+    ],
+    "colors": [
+      "oranje",
+      "bruin",
+      "groen",
+      "turquoise"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "palette_shift",
@@ -283,16 +452,30 @@
         "label": "Voeg mist toe",
         "prompt": "Voeg zachte ochtendmist toe aan het landschap"
       }
-    ]
+    ],
+    "shopifyHandle": "nand-geboortekaartje"
   },
   {
     "id": "nena",
     "name": "Nena",
     "description": "Familieportret met maan, sterren en bloemen",
     "image": "nena.jpg",
-    "tags": ["illustratief", "familie", "speels", "natuur"],
-    "colors": ["roze", "crème", "bruin"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "familie",
+      "speels",
+      "natuur"
+    ],
+    "colors": [
+      "roze",
+      "crème",
+      "bruin"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -309,16 +492,32 @@
         "label": "Maak het een avondsfeer",
         "prompt": "Verander de belichting naar zachte avondtinten"
       }
-    ]
+    ],
+    "shopifyHandle": "nena-geboortekaartje"
   },
   {
     "id": "noor",
     "name": "Noor",
     "description": "Familie wandelscène met bergen en bos",
     "image": "noor.jpg",
-    "tags": ["illustratief", "familie", "wandelen", "natuur"],
-    "colors": ["roze", "groen", "blauw", "oranje"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "familie",
+      "wandelen",
+      "natuur"
+    ],
+    "colors": [
+      "roze",
+      "groen",
+      "blauw",
+      "oranje"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "palette_shift",
@@ -335,16 +534,32 @@
         "label": "Voeg wolken toe",
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
-    ]
+    ],
+    "shopifyHandle": "noor-geboortekaartje"
   },
   {
     "id": "nore",
     "name": "Nore",
     "description": "Herfstlandschap met bomen en gouden zon",
     "image": "nore.jpg",
-    "tags": ["illustratief", "landschap", "herfst", "natuur"],
-    "colors": ["oranje", "geel", "groen", "turquoise", "bruin"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "herfst",
+      "natuur"
+    ],
+    "colors": [
+      "oranje",
+      "geel",
+      "groen",
+      "turquoise",
+      "bruin"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "palette_shift",
@@ -361,16 +576,31 @@
         "label": "Maak de kleuren zachter",
         "prompt": "Verander de sfeer naar zachte pasteltinten"
       }
-    ]
+    ],
+    "shopifyHandle": "nore-geboortekaartje"
   },
   {
     "id": "rosie",
     "name": "Rosie",
     "description": "Kindersilhouetten in landschap met luchtballon",
     "image": "rosie.jpg",
-    "tags": ["illustratief", "familie", "speels", "avontuur"],
-    "colors": ["oranje", "rood", "crème", "bruin"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "familie",
+      "speels",
+      "avontuur"
+    ],
+    "colors": [
+      "oranje",
+      "rood",
+      "crème",
+      "bruin"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -387,16 +617,32 @@
         "label": "Maak het een zonsopgang",
         "prompt": "Verander de belichting naar zachte zonsopgangkleuren"
       }
-    ]
+    ],
+    "shopifyHandle": "rosie-geboortekaartje"
   },
   {
     "id": "siebe",
     "name": "Siebe",
     "description": "Luchtballon zweeft boven glooiende heuvels",
     "image": "siebe.jpg",
-    "tags": ["illustratief", "avontuur", "speels", "natuur"],
-    "colors": ["oranje", "rood", "groen", "crème"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "illustratief",
+      "avontuur",
+      "speels",
+      "natuur"
+    ],
+    "colors": [
+      "oranje",
+      "rood",
+      "groen",
+      "crème"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "color_change",
@@ -413,16 +659,32 @@
         "label": "Voeg wolken toe",
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
-    ]
+    ],
+    "shopifyHandle": "siebe-geboortekaartje"
   },
   {
     "id": "tille",
     "name": "Tille",
     "description": "Kleurrijk landschap met bomen, heuvels en bloemen",
     "image": "tille.jpg",
-    "tags": ["illustratief", "landschap", "kleurrijk", "natuur"],
-    "colors": ["geel", "groen", "blauw", "rood", "paars"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere"],
+    "tags": [
+      "illustratief",
+      "landschap",
+      "kleurrijk",
+      "natuur"
+    ],
+    "colors": [
+      "geel",
+      "groen",
+      "blauw",
+      "rood",
+      "paars"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere"
+    ],
     "suggestions": [
       {
         "type": "palette_shift",
@@ -439,16 +701,32 @@
         "label": "Maak de kleuren warmer",
         "prompt": "Verander de sfeer naar warme tinten"
       }
-    ]
+    ],
+    "shopifyHandle": "tille-geboortekaartje"
   },
   {
     "id": "wannes",
     "name": "Wannes",
     "description": "Berglandschap met bos en meer bij zonsopgang",
     "image": "wannes.jpg",
-    "tags": ["minimalistisch", "landschap", "natuur", "sereen"],
-    "colors": ["groen", "turquoise", "goudgeel", "crème"],
-    "allowedOperations": ["color_change", "palette_shift", "atmosphere", "weather"],
+    "tags": [
+      "minimalistisch",
+      "landschap",
+      "natuur",
+      "sereen"
+    ],
+    "colors": [
+      "groen",
+      "turquoise",
+      "goudgeel",
+      "crème"
+    ],
+    "allowedOperations": [
+      "color_change",
+      "palette_shift",
+      "atmosphere",
+      "weather"
+    ],
     "suggestions": [
       {
         "type": "atmosphere",
@@ -465,6 +743,7 @@
         "label": "Voeg mist toe aan het meer",
         "prompt": "Voeg zachte ochtendmist toe boven het meer"
       }
-    ]
+    ],
+    "shopifyHandle": "wannes-geboortekaartje"
   }
 ]

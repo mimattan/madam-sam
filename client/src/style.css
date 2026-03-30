@@ -34,3 +34,35 @@ h1, h2, h3, h4 {
 .max-h-full {
   overflow: hidden;
 }
+
+/* Shopify Storefront Web Components styling */
+shopify-cart dialog {
+  font-family: var(--font-body);
+  color: var(--color-sam-text);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  max-width: 420px;
+  padding: 1.5rem;
+}
+
+shopify-cart dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+shopify-variant-selector select {
+  font-family: var(--font-body);
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-sam-taupe-light);
+  border-radius: 0.5rem;
+  background-color: white;
+  color: var(--color-sam-text);
+  font-size: 0.875rem;
+}
+
+shopify-variant-selector select:focus {
+  outline: none;
+  border-color: var(--color-sam-green);
+  box-shadow: 0 0 0 2px rgb(74 94 74 / 0.2);
+}
