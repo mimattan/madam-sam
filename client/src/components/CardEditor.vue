@@ -42,6 +42,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   reset: []
   download: []
+  order: []
   updateOverlay: [id: string, updates: Partial<TextOverlayData>]
   selectOverlay: [id: string]
   updateLayer: [id: string, updates: Partial<ImageLayerData>]
@@ -678,6 +679,12 @@ onUnmounted(() => {
           class="text-sm px-3 py-1.5 rounded bg-sam-green text-white hover:bg-sam-green-dark transition-colors"
         >
           Download
+        </button>
+        <button
+          @click="$emit('order')"
+          class="text-sm px-3 py-1.5 rounded bg-sam-taupe text-white hover:bg-sam-taupe-dark transition-colors"
+        >
+          Bestellen
         </button>
       </div>
     </div>
