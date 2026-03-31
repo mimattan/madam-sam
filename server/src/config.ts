@@ -14,8 +14,12 @@ export const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
 }
 
-// Debug: confirm which keys are loaded (show first/last 4 chars only)
-const maskKey = (key: string) => key ? `${key.slice(0, 4)}...${key.slice(-4)} (${key.length} chars)` : '(empty)'
-console.log(`[Config] .env path: ${join(__dirname, '..', '.env')}`)
-console.log(`[Config] ANTHROPIC_API_KEY: ${maskKey(config.anthropicApiKey)}`)
-console.log(`[Config] REPLICATE_API_TOKEN: ${maskKey(config.replicateApiToken)}`)
+// Startup validation
+const warnings: string[] = []
+if (!config.replicateApiToken) warnings.push('REPLICATE_API_TOKEN is not set - image editing will run in demo mode')
+if (!config.anthropicApiKey) warnings.push('ANTHROPIC_API_KEY is not set - prompt sanitization will reject all requests')
+
+if (warnings.length > 0) {
+  console.warn('[Config] Warnings:')
+  warnings.forEach(w => console.warn(`  - ${w}`))
+}

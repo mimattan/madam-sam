@@ -3,8 +3,15 @@ import { readFileSync, existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { registerGoogleFonts, getRegisteredFontFamilies } from './fontRegistry'
+import { safeResolveFromUrl } from '../utils/pathValidation.js'
+import { logger } from '../utils/logger.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const LAYERS_DIR = path.join(__dirname, '..', '..', 'layers')
+const EDITED_DIR = path.join(__dirname, '..', '..', 'edited')
+const CARDS_DIR = path.join(__dirname, '..', '..', 'cards')
+
+const MAX_IMAGE_DIMENSION = 4096
 
 // Register all Google Fonts on module load
 const registeredFonts = registerGoogleFonts()
@@ -92,21 +99,15 @@ async function loadImageFromPathOrUrl(imagePathOrUrl: string) {
   }
 }
 
-function resolveLayerPath(imageUrl: string): string {
-  const __dir = path.dirname(fileURLToPath(import.meta.url))
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    return imageUrl
-  } else if (imageUrl.includes('/api/images/layers/')) {
-    const filename = imageUrl.split('/').pop()
-    return path.join(__dir, '..', '..', 'layers', filename!)
+function resolveLayerPath(imageUrl: string): string | null {
+  if (imageUrl.includes('/api/images/layers/')) {
+    return safeResolveFromUrl(imageUrl, LAYERS_DIR)
   } else if (imageUrl.includes('/api/images/edited/')) {
-    const filename = imageUrl.split('/').pop()
-    return path.join(__dir, '..', '..', 'edited', filename!)
+    return safeResolveFromUrl(imageUrl, EDITED_DIR)
   } else if (imageUrl.includes('/api/images/cards/')) {
-    const filename = imageUrl.split('/').pop()
-    return path.join(__dir, '..', '..', 'cards', filename!)
+    return safeResolveFromUrl(imageUrl, CARDS_DIR)
   }
-  return imageUrl
+  return null
 }
 
 export async function composeImage(
@@ -114,24 +115,32 @@ export async function composeImage(
   textOverlays: TextOverlay[],
   imageLayers: ImageLayer[] = []
 ): Promise<Buffer> {
-  console.log(`[ImageComposer] Loading base image from: ${imagePathOrUrl}`)
+  logger.debug({ path: imagePathOrUrl }, '[ImageComposer] Loading base image')
   const image = await loadImageFromPathOrUrl(imagePathOrUrl)
-  console.log(`[ImageComposer] Loaded base image: ${image.width}x${image.height}`)
+
+  if (image.width > MAX_IMAGE_DIMENSION || image.height > MAX_IMAGE_DIMENSION) {
+    throw new Error(`Image dimensions ${image.width}x${image.height} exceed maximum ${MAX_IMAGE_DIMENSION}x${MAX_IMAGE_DIMENSION}`)
+  }
+
+  logger.debug({ width: image.width, height: image.height }, '[ImageComposer] Loaded base image')
 
   const canvas = createCanvas(image.width, image.height)
   const ctx = canvas.getContext('2d')
 
   // Draw the base image
   ctx.drawImage(image, 0, 0)
-  console.log(`[ImageComposer] Base image drawn`)
 
   // Draw image layers (below text overlays)
   for (let i = 0; i < imageLayers.length; i++) {
     const layer = imageLayers[i]
-    console.log(`[ImageComposer] Drawing image layer ${i + 1}: ${layer.imageUrl}`)
+    logger.debug({ layer: i + 1, url: layer.imageUrl }, '[ImageComposer] Drawing image layer')
 
     try {
       const layerPath = resolveLayerPath(layer.imageUrl)
+      if (!layerPath) {
+        logger.warn({ url: layer.imageUrl }, '[ImageComposer] Invalid layer image URL, skipping')
+        continue
+      }
       const layerImg = await loadImageFromPathOrUrl(layerPath)
 
       const x = (layer.x / 100) * canvas.width
@@ -146,9 +155,9 @@ export async function composeImage(
       ctx.drawImage(layerImg, -w / 2, -h / 2, w, h)
       ctx.restore()
 
-      console.log(`[ImageComposer] Layer ${i + 1} drawn at (${x.toFixed(1)}, ${y.toFixed(1)}) size ${w.toFixed(1)}x${h.toFixed(1)} rotated ${layer.rotation || 0}°`)
+      logger.debug({ layer: i + 1, x: x.toFixed(1), y: y.toFixed(1), w: w.toFixed(1), h: h.toFixed(1), rotation: layer.rotation || 0 }, '[ImageComposer] Layer drawn')
     } catch (err) {
-      console.error(`[ImageComposer] Failed to draw layer ${i + 1}:`, err instanceof Error ? err.message : String(err))
+      logger.error({ err, layer: i + 1 }, '[ImageComposer] Failed to draw layer')
     }
   }
 
@@ -158,7 +167,7 @@ export async function composeImage(
     const y = (overlay.y / 100) * canvas.height
     const rotation = (overlay.rotation || 0) * Math.PI / 180
 
-    console.log(`[ImageComposer] Text ${index + 1}: "${overlay.text}" at (${x.toFixed(1)}, ${y.toFixed(1)}) rotated ${overlay.rotation || 0}°`)
+    logger.debug({ text: overlay.text, x: x.toFixed(1), y: y.toFixed(1), rotation: overlay.rotation || 0 }, '[ImageComposer] Drawing text overlay')
 
     const fontFamily = getFontFamily(overlay.fontFamily)
 
@@ -182,7 +191,7 @@ export async function composeImage(
   })
 
   const buffer = canvas.toBuffer('image/png')
-  console.log(`[ImageComposer] Composed image buffer: ${buffer.length} bytes`)
+  logger.debug({ bytes: buffer.length }, '[ImageComposer] Composed image')
   return buffer
 }
 

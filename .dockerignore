@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+*.md
+server/edited/*
+server/layers/*
+server/dist
+client/dist

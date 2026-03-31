@@ -65,7 +65,6 @@ router.get('/', (req, res) => {
     
     res.json({ fonts: allFonts })
   } catch (error) {
-    console.error('[Fonts API] Error getting font list:', error)
     res.status(500).json({ error: 'Failed to get font list' })
   }
 })

@@ -3,12 +3,18 @@ import { readFileSync, existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { composeImage, type TextOverlay, type ImageLayer } from '../services/imageComposer.js'
+import { safeResolveFromUrl } from '../utils/pathValidation.js'
+import { downloadRateLimiter } from '../middleware/rateLimit.js'
+import { logger } from '../utils/logger.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const router = Router()
 
+const EDITED_DIR = path.join(__dirname, '..', '..', 'edited')
+const CARDS_DIR = path.join(__dirname, '..', '..', 'cards')
+
 // POST /api/download - merge text overlays and download
-router.post('/', async (req, res) => {
+router.post('/', downloadRateLimiter, async (req, res) => {
   const { imageUrl, textOverlays, imageLayers } = req.body
 
   if (!imageUrl) {
@@ -17,26 +23,21 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    // Determine the image path
-    let imagePath: string
-    if (imageUrl.startsWith('http') && !imageUrl.includes('localhost') && !imageUrl.includes('127.0.0.1')) {
-      // External URL
-      imagePath = imageUrl
-    } else if (imageUrl.includes('/api/images/edited/')) {
-      // Edited image
-      const filename = imageUrl.split('/').pop()
-      imagePath = path.join(__dirname, '..', '..', 'edited', filename!)
+    // Determine the image path - only allow local images (no external URLs / SSRF)
+    let imagePath: string | null = null
+
+    if (imageUrl.includes('/api/images/edited/')) {
+      imagePath = safeResolveFromUrl(imageUrl, EDITED_DIR)
     } else if (imageUrl.includes('/api/images/cards/')) {
-      // Card image
-      const filename = imageUrl.split('/').pop()
-      imagePath = path.join(__dirname, '..', '..', 'cards', filename!)
-    } else {
+      imagePath = safeResolveFromUrl(imageUrl, CARDS_DIR)
+    }
+
+    if (!imagePath) {
       res.status(400).json({ error: 'Invalid image URL' })
       return
     }
 
-    // Check if file exists (for local paths)
-    if (!imagePath.startsWith('http') && !existsSync(imagePath)) {
+    if (!existsSync(imagePath)) {
       res.status(404).json({ error: 'Image file not found' })
       return
     }
@@ -46,16 +47,10 @@ router.post('/', async (req, res) => {
 
     // If no overlays and no layers, just return the original image
     if (!hasTextOverlays && !hasImageLayers) {
-      if (imagePath.startsWith('http')) {
-        // Redirect to the URL
-        res.redirect(imagePath)
-      } else {
-        // Send the file
-        const imageBuffer = readFileSync(imagePath)
-        res.setHeader('Content-Type', 'image/png')
-        res.setHeader('Content-Disposition', 'attachment; filename="card-with-text.png"')
-        res.send(imageBuffer)
-      }
+      const imageBuffer = readFileSync(imagePath)
+      res.setHeader('Content-Type', 'image/png')
+      res.setHeader('Content-Disposition', 'attachment; filename="card-with-text.png"')
+      res.send(imageBuffer)
       return
     }
 
@@ -71,11 +66,9 @@ router.post('/', async (req, res) => {
     res.setHeader('Content-Disposition', 'attachment; filename="card-with-text.png"')
     res.send(composedImageBuffer)
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Unknown error'
-    console.error('[Download] Error:', message)
+    logger.error({ err }, '[Download] Error processing download')
     res.status(500).json({
-      error: 'Failed to generate download',
-      message,
+      error: 'Failed to generate download. Please try again.',
     })
   }
 })

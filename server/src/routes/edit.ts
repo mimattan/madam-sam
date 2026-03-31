@@ -5,8 +5,15 @@ import { fileURLToPath } from 'url'
 import { sanitizePrompt } from '../services/claude.js'
 import { editCardImage } from '../services/replicate.js'
 import { rateLimiter } from '../middleware/rateLimit.js'
+import { safeResolveFromUrl } from '../utils/pathValidation.js'
+import { logger } from '../utils/logger.js'
+import { costTracker } from '../services/costTracker.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
+const EDITED_DIR = path.join(__dirname, '..', '..', 'edited')
+const CARDS_DIR = path.join(__dirname, '..', '..', 'cards')
+
 const router = Router()
 
 interface CardTemplate {
@@ -39,6 +46,13 @@ router.post('/', rateLimiter, async (req, res) => {
     return
   }
 
+  // Check daily spending cap
+  if (!costTracker.canProceed()) {
+    logger.warn('[Edit] Daily spending cap reached')
+    res.status(503).json({ error: 'Service temporarily unavailable due to usage limits. Please try again tomorrow.' })
+    return
+  }
+
   const cards = loadCards()
   const card = cards.find((c) => c.id === cardId)
   if (!card) {
@@ -48,11 +62,12 @@ router.post('/', rateLimiter, async (req, res) => {
 
   try {
     // Step 1: Sanitize the prompt with Claude (pass color data and allowed operations)
+    costTracker.recordCall('anthropic')
     const sanitized = await sanitizePrompt(
-      prompt, 
-      card.name, 
-      card.description, 
-      selectedColor, 
+      prompt,
+      card.name,
+      card.description,
+      selectedColor,
       colorContext,
       card.allowedOperations
     )
@@ -72,24 +87,20 @@ router.post('/', rateLimiter, async (req, res) => {
     }
 
     // Step 2: Determine the source image path or URL
-    let imagePath: string
-    if (imageUrl && imageUrl.startsWith('http') && !imageUrl.includes('localhost') && !imageUrl.includes('127.0.0.1')) {
-      // If it's an external URL (not localhost), use it directly
-      imagePath = imageUrl
-    } else if (imageUrl && (imageUrl.startsWith('/api/images/edited/') || imageUrl.includes('/api/images/edited/'))) {
-      // If it's a previously edited image, get the file path
-      const filename = imageUrl.split('/').pop()
-      imagePath = path.join(__dirname, '..', '..', 'edited', filename!)
+    let imagePath: string | null = null
+    if (imageUrl && (imageUrl.startsWith('/api/images/edited/') || imageUrl.includes('/api/images/edited/'))) {
+      imagePath = safeResolveFromUrl(imageUrl, EDITED_DIR)
     } else if (imageUrl && (imageUrl.startsWith('/api/images/cards/') || imageUrl.includes('/api/images/cards/'))) {
-      // If it's a card image URL (including localhost URLs), get the file path
-      const filename = imageUrl.split('/').pop()
-      imagePath = path.join(__dirname, '..', '..', 'cards', filename!)
-    } else {
-      // Otherwise, use the original card image file path
-      imagePath = path.join(__dirname, '..', '..', 'cards', card.image)
+      imagePath = safeResolveFromUrl(imageUrl, CARDS_DIR)
+    }
+
+    // Fall back to original card image if no valid URL provided
+    if (!imagePath) {
+      imagePath = path.join(CARDS_DIR, card.image)
     }
 
     // Step 3: Edit the image with FLUX Kontext Pro
+    costTracker.recordCall('replicate')
     const editResult = await editCardImage(imagePath, sanitized.prompt)
 
     if (!editResult.success) {
@@ -97,7 +108,7 @@ router.post('/', rateLimiter, async (req, res) => {
         success: false,
         editedImageUrl: null,
         sanitizedPrompt: sanitized.prompt,
-        message: `Image editing failed: ${editResult.error}`,
+        message: 'Image editing failed. Please try again.',
       })
       return
     }
@@ -109,12 +120,12 @@ router.post('/', rateLimiter, async (req, res) => {
       message: sanitized.message,
     })
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Unknown error'
+    logger.error({ err }, '[Edit] Error processing edit request')
     res.status(500).json({
       success: false,
       editedImageUrl: null,
       sanitizedPrompt: null,
-      message: `Server error: ${message}`,
+      message: 'An error occurred. Please try again.',
     })
   }
 })

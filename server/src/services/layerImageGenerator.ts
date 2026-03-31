@@ -6,6 +6,8 @@ import { fileURLToPath } from 'url'
 import { v4 as uuid } from 'uuid'
 import { config } from '../config.js'
 import { analyzeCardStyle, type StyleAnalysis } from './styleAnalyzer.js'
+import { logger } from '../utils/logger.js'
+import { isStorageFull } from './fileCleanup.js'
 
 const __dirname = join(fileURLToPath(import.meta.url), '..')
 const replicate = new Replicate({ auth: config.replicateApiToken })
@@ -65,7 +67,7 @@ export async function generateLayerImage(
   sanitizedPrompt: string
 ): Promise<LayerGenerationResult> {
   if (!config.replicateApiToken) {
-    console.log('[LayerGenerator] Running in DEMO mode - no API token configured')
+    logger.warn('[LayerGenerator] Running in DEMO mode - no API token configured')
     return {
       success: false,
       layerImageUrl: null,
@@ -74,18 +76,26 @@ export async function generateLayerImage(
     }
   }
 
-  console.log('[LayerGenerator] Starting layer generation')
-  console.log('[LayerGenerator] Card ID:', cardId)
-  console.log('[LayerGenerator] Prompt:', sanitizedPrompt)
+  // Check storage capacity
+  if (isStorageFull(LAYERS_DIR)) {
+    return {
+      success: false,
+      layerImageUrl: null,
+      userPrompt: sanitizedPrompt,
+      error: 'Storage capacity reached. Please try again later.',
+    }
+  }
+
+  logger.info({ cardId, prompt: sanitizedPrompt }, '[LayerGenerator] Starting layer generation')
 
   try {
     // Get style analysis for the card
     const style = await analyzeCardStyle(cardId, cardImagePath)
-    console.log('[LayerGenerator] Style analysis:', style.artisticStyle)
+    logger.debug({ style: style.artisticStyle }, '[LayerGenerator] Style analysis')
 
     // Build the full prompt with style matching
     const fullPrompt = buildLayerPrompt(sanitizedPrompt, style)
-    console.log('[LayerGenerator] Full prompt:', fullPrompt)
+    logger.debug({ prompt: fullPrompt }, '[LayerGenerator] Full prompt')
 
     // Generate the image using FLUX Kontext Pro with the card as reference
     let inputImage: string | Buffer
@@ -116,7 +126,7 @@ export async function generateLayerImage(
     const rawBuffer = Buffer.from(await response.arrayBuffer())
 
     // Remove white background
-    console.log('[LayerGenerator] Removing white background...')
+    logger.debug('[LayerGenerator] Removing white background')
     const transparentBuffer = await removeWhiteBackground(rawBuffer)
 
     // Note: For layers, we generate at 1:1 aspect ratio (square) and let the client resize
@@ -126,7 +136,7 @@ export async function generateLayerImage(
     // Save to layers directory
     const filename = `${uuid()}.png`
     writeFileSync(join(LAYERS_DIR, filename), transparentBuffer)
-    console.log('[LayerGenerator] Layer saved as:', filename)
+    logger.info({ filename }, '[LayerGenerator] Layer saved')
 
     return {
       success: true,
@@ -136,7 +146,7 @@ export async function generateLayerImage(
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error during layer generation'
-    console.error('[LayerGenerator] Error:', message)
+    logger.error({ err }, '[LayerGenerator] Error')
     return {
       success: false,
       layerImageUrl: null,

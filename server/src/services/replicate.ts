@@ -1,12 +1,17 @@
 import Replicate from 'replicate'
 import { createCanvas, loadImage } from 'canvas'
 import { config } from '../config.js'
-import { writeFileSync, readFileSync, existsSync } from 'fs'
+import { writeFileSync, readFileSync, existsSync, statSync } from 'fs'
 import { join } from 'path'
 import { fileURLToPath } from 'url'
 import { v4 as uuid } from 'uuid'
+import { logger } from '../utils/logger.js'
+import { isStorageFull } from './fileCleanup.js'
 
 const __dirname = join(fileURLToPath(import.meta.url), '..')
+
+const MAX_IMAGE_DIMENSION = 4096
+const MAX_FILE_SIZE_BYTES = 20 * 1024 * 1024 // 20MB
 
 const replicate = new Replicate({ auth: config.replicateApiToken })
 
@@ -20,30 +25,42 @@ export async function editCardImage(
   imagePathOrUrl: string,
   prompt: string
 ): Promise<EditResult> {
-  console.log('[Replicate] API Token present:', !!config.replicateApiToken)
-  console.log('[Replicate] Token length:', config.replicateApiToken?.length || 0)
-  
   if (!config.replicateApiToken) {
-    console.log('[Replicate] Running in DEMO mode - no API token configured')
-    // Demo mode: return the original image with a note
+    logger.warn('[Replicate] Running in DEMO mode - no API token configured')
     return {
       success: true,
       editedImageUrl: imagePathOrUrl,
       error: null,
     }
   }
-  
-  console.log('[Replicate] Starting image edit with FLUX Kontext Pro')
-  console.log('[Replicate] Image path/URL:', imagePathOrUrl)
-  console.log('[Replicate] Prompt:', prompt)
+
+  logger.info({ prompt }, '[Replicate] Starting image edit')
 
   try {
+    // Validate file size for local files
+    if (!imagePathOrUrl.startsWith('http')) {
+      const fileSize = statSync(imagePathOrUrl).size
+      if (fileSize > MAX_FILE_SIZE_BYTES) {
+        throw new Error(`Image file too large: ${(fileSize / 1024 / 1024).toFixed(1)}MB exceeds ${MAX_FILE_SIZE_BYTES / 1024 / 1024}MB limit`)
+      }
+    }
+
+    // Check storage capacity
+    const editedOutputDir = join(__dirname, '..', '..', 'edited')
+    if (isStorageFull(editedOutputDir)) {
+      throw new Error('Storage capacity reached. Please try again later.')
+    }
+
     // Load original image to get dimensions
-    console.log('[Replicate] Loading original image to get dimensions')
     const originalImage = await loadImage(imagePathOrUrl)
     const targetWidth = originalImage.width
     const targetHeight = originalImage.height
-    console.log('[Replicate] Original dimensions:', `${targetWidth}x${targetHeight}`)
+
+    if (targetWidth > MAX_IMAGE_DIMENSION || targetHeight > MAX_IMAGE_DIMENSION) {
+      throw new Error(`Image dimensions ${targetWidth}x${targetHeight} exceed maximum ${MAX_IMAGE_DIMENSION}x${MAX_IMAGE_DIMENSION}`)
+    }
+
+    logger.debug({ width: targetWidth, height: targetHeight }, '[Replicate] Original dimensions')
 
     // Determine if input is a file path or URL
     let inputImage: string | Buffer
@@ -56,7 +73,7 @@ export async function editCardImage(
         throw new Error(`Image file not found: ${imagePathOrUrl}`)
       }
       inputImage = readFileSync(imagePathOrUrl)
-      console.log('[Replicate] Uploading local file to Replicate')
+      logger.debug('[Replicate] Uploading local file to Replicate')
     }
 
     // Wrap prompt with explicit preservation instructions for Kontext
@@ -78,7 +95,7 @@ export async function editCardImage(
     const resultUrl = typeof output === 'string' ? output : String(output)
 
     // Download the edited image
-    console.log('[Replicate] Downloading edited image from:', resultUrl)
+    logger.debug({ url: resultUrl }, '[Replicate] Downloading edited image')
     const response = await fetch(resultUrl)
     if (!response.ok) {
       throw new Error(`Failed to download edited image: ${response.statusText}`)
@@ -88,20 +105,18 @@ export async function editCardImage(
     
     // Load edited image and check dimensions
     const editedImage = await loadImage(buffer)
-    console.log('[Replicate] Edited image dimensions:', `${editedImage.width}x${editedImage.height}`)
+    logger.debug({ width: editedImage.width, height: editedImage.height }, '[Replicate] Edited image dimensions')
 
     let finalBuffer: Buffer
 
     // Resize if dimensions don't match
     if (editedImage.width !== targetWidth || editedImage.height !== targetHeight) {
-      console.log('[Replicate] Resizing edited image to match original dimensions')
+      logger.debug('[Replicate] Resizing edited image to match original dimensions')
       const canvas = createCanvas(targetWidth, targetHeight)
       const ctx = canvas.getContext('2d')
       ctx.drawImage(editedImage, 0, 0, targetWidth, targetHeight)
       finalBuffer = canvas.toBuffer('image/png')
-      console.log('[Replicate] Image resized to:', `${targetWidth}x${targetHeight}`)
     } else {
-      console.log('[Replicate] Dimensions match, no resize needed')
       finalBuffer = buffer
     }
 

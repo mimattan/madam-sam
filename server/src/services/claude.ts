@@ -1,5 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { config } from '../config.js'
+import { logger } from '../utils/logger.js'
 
 const anthropic = new Anthropic({ apiKey: config.anthropicApiKey })
 
@@ -165,7 +166,7 @@ function preFilterPrompt(userPrompt: string): SanitizeResult | null {
 
   const blockedMatch = BLOCKED_PATTERNS.find(p => p.test(userPrompt))
   if (blockedMatch) {
-    console.log(`[Claude Pre-filter] BLOCKED prompt: "${userPrompt}" matched pattern: ${blockedMatch}`)
+    logger.info({ prompt: userPrompt, pattern: blockedMatch.toString() }, '[Claude Pre-filter] Blocked prompt')
     return {
       approved: false,
       prompt: null,
@@ -226,7 +227,7 @@ export async function sanitizePrompt(
     })
 
     let text = response.content[0].type === 'text' ? response.content[0].text : ''
-    console.log('[Claude] Raw response:', text)
+    logger.debug({ response: text }, '[Claude] Raw response')
 
     // Strip markdown code fences if present
     text = text.replace(/^```json\s*\n?/i, '').replace(/\n?```\s*$/i, '').trim()
@@ -243,8 +244,7 @@ export async function sanitizePrompt(
         originalPrompt: result.requiresColorInput ? userPrompt : undefined,
       }
     } catch (parseErr) {
-      console.error('[Claude] JSON parse failed. Raw response was:', text)
-      console.error('[Claude] Parse error:', parseErr)
+      logger.error({ response: text, err: parseErr }, '[Claude] JSON parse failed')
       return {
         approved: false,
         prompt: null,
@@ -253,7 +253,7 @@ export async function sanitizePrompt(
     }
   } catch (err) {
     // If Anthropic API fails, REJECT the request — never approve unfiltered prompts
-    console.warn('[Claude] API call failed, REJECTING for safety:', err instanceof Error ? err.message : String(err))
+    logger.warn({ err }, '[Claude] API call failed, REJECTING for safety')
     return {
       approved: false,
       prompt: null,
@@ -302,8 +302,7 @@ export async function sanitizeLayerPrompt(
         message: result.message ?? 'Something went wrong processing your request.',
       }
     } catch (parseErr) {
-      console.error('[Claude Layer] JSON parse failed. Raw response was:', text)
-      console.error('[Claude Layer] Parse error:', parseErr)
+      logger.error({ response: text, err: parseErr }, '[Claude Layer] JSON parse failed')
       return {
         approved: false,
         prompt: null,
@@ -311,7 +310,7 @@ export async function sanitizeLayerPrompt(
       }
     }
   } catch (err) {
-    console.warn('[Claude] Layer sanitization API call failed, REJECTING for safety:', err instanceof Error ? err.message : String(err))
+    logger.warn({ err }, '[Claude] Layer sanitization API call failed, REJECTING for safety')
     return {
       approved: false,
       prompt: null,

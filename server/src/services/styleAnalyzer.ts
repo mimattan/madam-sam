@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync, existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { config } from '../config.js'
+import { logger } from '../utils/logger.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const anthropic = new Anthropic({ apiKey: config.anthropicApiKey })
@@ -50,7 +51,7 @@ export function getCachedStyleAnalysis(cardId: string): StyleAnalysis | null {
 function cacheStyleAnalysis(cardId: string, analysis: StyleAnalysis): void {
   const cachePath = getCachePath(cardId)
   writeFileSync(cachePath, JSON.stringify(analysis, null, 2), 'utf-8')
-  console.log(`[StyleAnalyzer] Cached style analysis for card "${cardId}" at ${cachePath}`)
+  logger.debug({ cardId }, '[StyleAnalyzer] Cached style analysis')
 }
 
 export async function analyzeCardStyle(
@@ -60,11 +61,11 @@ export async function analyzeCardStyle(
   // Check cache first
   const cached = getCachedStyleAnalysis(cardId)
   if (cached) {
-    console.log(`[StyleAnalyzer] Using cached style analysis for card "${cardId}"`)
+    logger.debug({ cardId }, '[StyleAnalyzer] Using cached style analysis')
     return cached
   }
 
-  console.log(`[StyleAnalyzer] Analyzing style for card "${cardId}"`)
+  logger.info({ cardId }, '[StyleAnalyzer] Analyzing card style')
 
   if (!config.anthropicApiKey) {
     // Fallback when no API key
@@ -130,14 +131,14 @@ export async function analyzeCardStyle(
     try {
       const analysis = JSON.parse(text) as StyleAnalysis
       cacheStyleAnalysis(cardId, analysis)
-      console.log(`[StyleAnalyzer] Successfully analyzed card "${cardId}"`)
+      logger.info({ cardId }, '[StyleAnalyzer] Successfully analyzed card')
       return analysis
     } catch {
-      console.error('[StyleAnalyzer] Failed to parse analysis JSON:', text)
+      logger.error({ response: text }, '[StyleAnalyzer] Failed to parse analysis JSON')
       throw new Error('Failed to parse style analysis response')
     }
   } catch (err) {
-    console.error('[StyleAnalyzer] API call failed:', err instanceof Error ? err.message : String(err))
+    logger.error({ err }, '[StyleAnalyzer] API call failed')
     // Return a generic fallback
     const fallback: StyleAnalysis = {
       colorPalette: ['#8B9E6B', '#D4A574', '#F5F0E8', '#6B7B5E', '#C9B896'],

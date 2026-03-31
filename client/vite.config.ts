@@ -4,6 +4,9 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [vue(), tailwindcss()],
+  build: {
+    sourcemap: false, // Don't expose source code in production
+  },
   server: {
     port: 5173,
     proxy: {

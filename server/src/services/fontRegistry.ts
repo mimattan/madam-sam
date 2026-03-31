@@ -2,6 +2,7 @@ import { registerFont } from 'canvas'
 import { existsSync } from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { logger } from '../utils/logger.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const fontsDir = path.join(__dirname, '..', '..', 'fonts')
@@ -104,7 +105,7 @@ const fontConfigs = [
 
 // Register all fonts
 export function registerGoogleFonts() {
-  console.log('[FontRegistry] Registering Google Fonts...')
+  logger.info('[FontRegistry] Registering Google Fonts...')
   
   const registeredFonts: string[] = []
   
@@ -121,20 +122,20 @@ export function registerGoogleFonts() {
         
         const weightStyle = config.weight !== '400' ? ` ${config.weight}` : ''
         const styleStr = config.style !== 'normal' ? ` ${config.style}` : ''
-        console.log(`[FontRegistry] ✓ ${config.family}${weightStyle}${styleStr} registered`)
+        logger.debug(`[FontRegistry] Registered ${config.family}${weightStyle}${styleStr}`)
         
         if (!registeredFonts.includes(config.family)) {
           registeredFonts.push(config.family)
         }
       } catch (error) {
-        console.error(`[FontRegistry] ✗ Error registering ${config.file}:`, error)
+        logger.error({ file: config.file, err: error }, '[FontRegistry] Error registering font')
       }
     } else {
-      console.log(`[FontRegistry] - ${config.file} not found (skipped)`)
+      logger.debug(`[FontRegistry] ${config.file} not found (skipped)`)
     }
   })
   
-  console.log(`[FontRegistry] ${registeredFonts.length} font families registered: ${registeredFonts.join(', ')}`)
+  logger.info({ count: registeredFonts.length, fonts: registeredFonts }, '[FontRegistry] Font families registered')
   return registeredFonts
 }
 
