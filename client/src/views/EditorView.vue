@@ -2,6 +2,7 @@
 import { onMounted, ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useCardStore } from '../stores/cardStore'
+import { useCartStore, formatPrice } from '../stores/cartStore'
 import { saveOrderImage } from '../services/api'
 import CardEditor from '../components/CardEditor.vue'
 import EditorSidebar from '../components/EditorSidebar.vue'
@@ -10,6 +11,8 @@ import ColorEditDialog from '../components/ColorEditDialog.vue'
 const route = useRoute()
 const router = useRouter()
 const store = useCardStore()
+const cart = useCartStore()
+const selectedVariantIndex = ref(0)
 const feedbackMessage = ref<string | null>(null)
 const feedbackType = ref<'success' | 'error' | 'info'>('info')
 const cardEditorRef = ref<{ generateDownloadImage: () => Promise<Blob> } | null>(null)
@@ -88,34 +91,35 @@ function handleRevert(index: number) {
 async function handleOrder() {
   if (!cardEditorRef.value || !store.currentCard) return
 
+  const pricing = store.currentCard.pricing
+  if (!pricing) return
+
+  const variant = pricing.variants[selectedVariantIndex.value]
+
   try {
     feedbackMessage.value = 'Kaartje voorbereiden voor bestelling...'
     feedbackType.value = 'info'
 
-    // 1. Generate the final composite image (reuses existing function)
+    // 1. Generate the final composite image
     const blob = await cardEditorRef.value.generateDownloadImage()
 
     // 2. Upload to backend for permanent storage
     const { imageUrl } = await saveOrderImage(blob, store.currentCard.id)
 
-    // 3. Add to Shopify cart
-    const cart = document.getElementById('madam-sam-cart') as any
-    if (cart && cart.addLine) {
-      // Try event-based addLine if inside a product context
-      // The cart will pick up the product from the closest shopify-context
-      await cart.addLine({ customAttributes: [
-        { key: 'Customized Image', value: imageUrl },
-        { key: 'Card Template', value: store.currentCard.name },
-        { key: '_card_id', value: store.currentCard.id }
-      ]})
-      cart.showModal()
-      feedbackMessage.value = 'Toegevoegd aan winkelwagen!'
-      feedbackType.value = 'success'
-    } else {
-      // Fallback: open cart dialog with info
-      feedbackMessage.value = 'Winkelwagen niet beschikbaar. Configureer eerst je Shopify-integratie.'
-      feedbackType.value = 'error'
-    }
+    // 3. Add to cart
+    cart.addItem({
+      cardId: store.currentCard.id,
+      cardName: store.currentCard.name,
+      thumbnailUrl: store.currentCard.thumbnailUrl,
+      imageUrl,
+      variantIndex: selectedVariantIndex.value,
+      quantity: variant.quantity,
+      pricePerUnit: variant.price,
+      label: variant.label,
+    })
+    cart.openCart()
+    feedbackMessage.value = 'Toegevoegd aan winkelwagen!'
+    feedbackType.value = 'success'
   } catch (err) {
     feedbackMessage.value = err instanceof Error ? err.message : 'Bestelling voorbereiden mislukt'
     feedbackType.value = 'error'
@@ -227,36 +231,47 @@ async function handleDownload() {
         />
       </div>
 
-      <!-- Order Section (Shopify Integration) -->
-      <div v-if="store.currentCard?.shopifyHandle" class="mt-6">
-        <shopify-context type="product" :handle="store.currentCard.shopifyHandle">
-          <template>
-            <div class="bg-white rounded-xl shadow-sm border border-sam-taupe-light p-6">
-              <h3 class="font-heading text-xl text-sam-text mb-4">Bestel jouw kaartje</h3>
-              <p class="text-sam-text-light text-sm mb-4">
-                Kies het aantal kaartjes dat je wilt bestellen. Elke bestelling wordt gedrukt op ecologisch papier.
-              </p>
+      <!-- Order Section -->
+      <div v-if="store.currentCard?.pricing" class="mt-6">
+        <div class="bg-white rounded-xl shadow-sm border border-sam-taupe-light p-6">
+          <h3 class="font-heading text-xl text-sam-text mb-4">Bestel jouw kaartje</h3>
+          <p class="text-sam-text-light text-sm mb-4">
+            Kies het aantal kaartjes dat je wilt bestellen. Elke bestelling wordt gedrukt op ecologisch papier.
+          </p>
 
-              <!-- Variant selector (quantity picker: 25/50/75/100 stuks) -->
-              <div class="mb-4">
-                <shopify-variant-selector></shopify-variant-selector>
-              </div>
-
-              <!-- Price display -->
-              <p class="text-2xl font-heading font-semibold text-sam-text mb-4">
-                <shopify-money></shopify-money>
-              </p>
-
-              <!-- Order button -->
+          <!-- Variant selector -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-sam-text mb-2">Aantal</label>
+            <div class="grid grid-cols-2 gap-2">
               <button
-                @click="handleOrder"
-                class="w-full py-3 rounded-lg bg-sam-taupe text-white font-medium hover:bg-sam-taupe-dark transition-colors"
+                v-for="(variant, idx) in store.currentCard.pricing.variants"
+                :key="idx"
+                @click="selectedVariantIndex = idx"
+                :class="[
+                  'py-2 px-3 rounded-lg border text-sm font-medium transition-colors',
+                  selectedVariantIndex === idx
+                    ? 'border-sam-green bg-sam-green/10 text-sam-green'
+                    : 'border-sam-taupe-light text-sam-text-light hover:border-sam-taupe'
+                ]"
               >
-                In winkelwagen
+                {{ variant.label }}
               </button>
             </div>
-          </template>
-        </shopify-context>
+          </div>
+
+          <!-- Price display -->
+          <p class="text-2xl font-heading font-semibold text-sam-text mb-4">
+            {{ formatPrice(store.currentCard.pricing.variants[selectedVariantIndex].price) }}
+          </p>
+
+          <!-- Order button -->
+          <button
+            @click="handleOrder"
+            class="w-full py-3 rounded-lg bg-sam-taupe text-white font-medium hover:bg-sam-taupe-dark transition-colors"
+          >
+            In winkelwagen
+          </button>
+        </div>
       </div>
     </template>
     <!-- Color Edit Dialog -->

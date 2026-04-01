@@ -38,7 +38,31 @@
         "prompt": "Verander de sfeer naar warme zonsondergang tinten"
       }
     ],
-    "shopifyHandle": "baziel-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "dre",
@@ -78,7 +102,31 @@
         "prompt": "Verander de sfeer naar warme avondtinten"
       }
     ],
-    "shopifyHandle": "dre-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "emiel",
@@ -120,7 +168,31 @@
         "prompt": "Voeg zachte ochtendmist toe aan de bosscène"
       }
     ],
-    "shopifyHandle": "emiel-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "felix",
@@ -162,7 +234,31 @@
         "prompt": "Verander het kleurenpalet naar warme herfsttinten"
       }
     ],
-    "shopifyHandle": "felix-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "hazel",
@@ -203,7 +299,31 @@
         "prompt": "Verander de belichting naar zachte avondtinten"
       }
     ],
-    "shopifyHandle": "hazel-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "isaac",
@@ -245,7 +365,31 @@
         "prompt": "Voeg zachte sneeuwval toe aan de arctische scène"
       }
     ],
-    "shopifyHandle": "isaac-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "isaiah",
@@ -287,7 +431,31 @@
         "prompt": "Verander de belichting naar warme zonsondergangkleuren"
       }
     ],
-    "shopifyHandle": "isaiah-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "leia",
@@ -328,7 +496,31 @@
         "prompt": "Verander het kleurenpalet naar warme tinten"
       }
     ],
-    "shopifyHandle": "leia-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "mara",
@@ -370,7 +562,31 @@
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
     ],
-    "shopifyHandle": "mara-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "menno",
@@ -411,7 +627,31 @@
         "prompt": "Verander het kleurenpalet naar noorderlicht tinten met groen en paars"
       }
     ],
-    "shopifyHandle": "menno-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "nand",
@@ -453,7 +693,31 @@
         "prompt": "Voeg zachte ochtendmist toe aan het landschap"
       }
     ],
-    "shopifyHandle": "nand-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "nena",
@@ -493,7 +757,31 @@
         "prompt": "Verander de belichting naar zachte avondtinten"
       }
     ],
-    "shopifyHandle": "nena-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "noor",
@@ -535,7 +823,31 @@
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
     ],
-    "shopifyHandle": "noor-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "nore",
@@ -577,7 +889,31 @@
         "prompt": "Verander de sfeer naar zachte pasteltinten"
       }
     ],
-    "shopifyHandle": "nore-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "rosie",
@@ -618,7 +954,31 @@
         "prompt": "Verander de belichting naar zachte zonsopgangkleuren"
       }
     ],
-    "shopifyHandle": "rosie-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "siebe",
@@ -660,7 +1020,31 @@
         "prompt": "Voeg zachte wolken toe aan de lucht"
       }
     ],
-    "shopifyHandle": "siebe-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "tille",
@@ -702,7 +1086,31 @@
         "prompt": "Verander de sfeer naar warme tinten"
       }
     ],
-    "shopifyHandle": "tille-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   },
   {
     "id": "wannes",
@@ -744,6 +1152,30 @@
         "prompt": "Voeg zachte ochtendmist toe boven het meer"
       }
     ],
-    "shopifyHandle": "wannes-geboortekaartje"
+    "pricing": {
+      "currency": "EUR",
+      "variants": [
+        {
+          "quantity": 25,
+          "price": 4900,
+          "label": "25 stuks"
+        },
+        {
+          "quantity": 50,
+          "price": 8900,
+          "label": "50 stuks"
+        },
+        {
+          "quantity": 75,
+          "price": 12500,
+          "label": "75 stuks"
+        },
+        {
+          "quantity": 100,
+          "price": 15900,
+          "label": "100 stuks"
+        }
+      ]
+    }
   }
 ]
