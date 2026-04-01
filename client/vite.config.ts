@@ -4,13 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (tag) => tag.startsWith('shopify-')
-        }
-      }
-    }),
+    vue(),
     tailwindcss()
   ],
   server: {

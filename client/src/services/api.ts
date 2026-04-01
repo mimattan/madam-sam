@@ -1,5 +1,16 @@
 const API_BASE = '/api'
 
+export interface PricingVariant {
+  quantity: number
+  price: number  // cents
+  label: string
+}
+
+export interface CardPricing {
+  currency: string
+  variants: PricingVariant[]
+}
+
 export interface CardTemplate {
   id: string
   name: string
@@ -12,9 +23,9 @@ export interface CardTemplate {
     label: string
     prompt: string
   }>
+  pricing: CardPricing
   thumbnailUrl: string
   imageUrl?: string
-  shopifyHandle?: string
 }
 
 export interface EditResponse {
@@ -163,6 +174,82 @@ export async function saveOrderImage(blob: Blob, cardId: string): Promise<{ imag
 
   if (!response.ok) throw new Error('Failed to save order image')
   return response.json()
+}
+
+// Order types
+export interface OrderItem {
+  cardId: string
+  cardName: string
+  imageUrl: string
+  quantity: number
+  pricePerUnit: number
+  label: string
+}
+
+export interface CustomerInfo {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+}
+
+export interface Address {
+  street: string
+  houseNumber: string
+  postalCode: string
+  city: string
+  country: string
+}
+
+export interface CreateOrderRequest {
+  customer: CustomerInfo
+  shippingAddress: Address
+  billingAddress: Address
+  items: OrderItem[]
+}
+
+export interface CreateOrderResponse {
+  orderId: string
+  checkoutUrl: string
+}
+
+export interface OrderStatus {
+  orderId: string
+  orderNumber: string
+  status: string
+  paymentStatus: string
+  items: OrderItem[]
+  customer: CustomerInfo
+  shippingAddress: Address
+  totalAmount: number
+  shippingCost: number
+  currency: string
+  createdAt: string
+}
+
+export async function createOrder(data: CreateOrderRequest): Promise<CreateOrderResponse> {
+  const res = await fetch(`${API_BASE}/orders`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}))
+    throw new Error(err.message || 'Bestelling aanmaken mislukt')
+  }
+  return res.json()
+}
+
+export async function getOrderStatus(orderId: string): Promise<OrderStatus> {
+  const res = await fetch(`${API_BASE}/orders/${orderId}`)
+  if (!res.ok) throw new Error('Bestelling niet gevonden')
+  return res.json()
+}
+
+export async function getShippingCost(): Promise<{ shippingCostCents: number }> {
+  const res = await fetch(`${API_BASE}/orders/shipping-cost`)
+  if (!res.ok) throw new Error('Verzendkosten ophalen mislukt')
+  return res.json()
 }
 
 export async function getAvailableFonts(): Promise<FontOption[]> {

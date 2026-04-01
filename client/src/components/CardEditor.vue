@@ -51,6 +51,7 @@ const emit = defineEmits<{
 
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const imageRef = ref<HTMLImageElement | null>(null)
+// @ts-expect-error used in template ref
 const containerRef = ref<HTMLDivElement | null>(null)
 const draggingOverlayId = ref<string | null>(null)
 const draggingLayerId = ref<string | null>(null)
@@ -178,7 +179,7 @@ function renderOverlays() {
 function drawTextRotationHandle(
   ctx: CanvasRenderingContext2D,
   cx: number, cy: number,
-  textWidth: number,
+  _textWidth: number,
   rotation: number,
   scale: number
 ) {
