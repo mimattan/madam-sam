@@ -12,6 +12,8 @@ export const config = {
   anthropicApiKey: process.env.ANTHROPIC_API_KEY || '',
   maxEditsPerHour: parseInt(process.env.MAX_EDITS_PER_HOUR || '20', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
+  shopifyWebhookSecret: process.env.SHOPIFY_WEBHOOK_SECRET || '',
+  orderImageBaseUrl: process.env.ORDER_IMAGE_BASE_URL || `http://localhost:${parseInt(process.env.PORT || '3000', 10)}`,
 }
 
 // Startup validation
